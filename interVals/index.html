@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>randomColor Genrator with start and stop button</title>
+  </head>
+  <body>
+    <h1>learning with breaks</h1>
+    <button id="start">Start</button>
+    <button id="end">End</button>
+
+    <script>
+      // const date = function(){
+      //   console.log("Manish",Date.now());
+      // }
+      const start = document.getElementById("start");
+      const End = document.getElementById("end");
+      // var st;
+      //  document.addEventListener('click',function(e){
+
+      //    if(e.target.id === "start"){
+      //       st  =setInterval(date,1000);
+      //       }else if(e.target.id === "end"){
+      //         clearInterval(st);
+      //       }
+
+      //  },false);
+
+      const randomColor = function () {
+        const hex = "0123456789ABCDEF";
+        let color = "#";
+
+        for (let i = 0; i < 6; i++) {
+          color += hex[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+
+      let st;
+      document.addEventListener("click", function (e) {
+        if (e.target.id === "start") {
+
+          st = setInterval(changeBgColor,1000);
+
+            function changeBgColor() {
+            document.body.style.backgroundColor = randomColor();
+          }
+        } else if (e.target.id === "end") {
+          clearInterval(st);
+          
+        }
+      });
+    </script>
+  </body>
+</html>
