@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>requesting api</title>
+    <style>
+      body {
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body style="background-color: #212121">
+    <!-- <div id="card"></div> -->
+
+    <script>
+      const requestUrl = "https://api.github.com/users/Manish21-coder";
+      const xhr = new XMLHttpRequest();
+
+      xhr.open("GET", requestUrl);
+      //to check that which on my request is
+      xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+          const data = JSON.parse(this.responseText);
+          console.log(data);
+          console.log(data.followers);
+          console.log(data.avatar_url);
+
+          const follower = data.followers;
+          const avatar = data.avatar_url;
+
+          (document.querySelector("body").innerHTML = '<div id="card"></div>')
+          
+          const card = document.querySelector("#card");
+          let imgTag = `<img src="${avatar}" alt="error on loading" height = "300px" width = "300px" object-fit:'contain';>`;
+          let fol = `<h3>${follower}</h3>`;
+          card.style.height = "50vh";
+          card.style.width = "500px";
+          card.style.backgroundColor = "#fff";
+          card.style.color = "#000";
+          card.style.display = "grid";
+          card.style.margin = "20px auto";
+          card.style.placeItems = "center";
+
+          card.innerHTML += imgTag;
+          card.innerHTML += fol;
+        }
+      };
+
+      xhr.send();
+    </script>
+  </body>
+</html>
